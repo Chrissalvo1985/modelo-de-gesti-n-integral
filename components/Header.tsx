@@ -13,9 +13,11 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-500 tracking-tight">
                     {title}
                 </h1>
-                <p className="mt-4 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
-                    {subtitle}
-                </p>
+                {subtitle && (
+                    <p className="mt-4 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+                        {subtitle}
+                    </p>
+                )}
             </div>
         </header>
     );

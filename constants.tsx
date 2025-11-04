@@ -49,7 +49,7 @@ export interface ModalDataType {
 
 export const presentationData = {
     title: "Modelo de Gestión Integral",
-    subtitle: "Documento base para presentación a Gerencia General",
+    subtitle: "",
     vision: "Construir un sistema operativo empresarial que integra datos, tecnología, personas y procesos, generando valor medible y sostenible.",
     
     strategicObjectives: {
