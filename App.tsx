@@ -131,8 +131,14 @@ const App: React.FC = () => {
                 >
                      <div className="space-y-5">
                         {modalData.details.map((item, index) => {
+                             // Skip empty lines
+                             if (!item || item.trim() === '') {
+                                 return <div key={index} className="h-2" />;
+                             }
+
                              const isMitigation = item.toLowerCase().startsWith('mitigación:');
                              const isBold = item.startsWith('**');
+                             const isAvancesHeader = item.includes('📊 Avances Realizados');
                              
                              if (isMitigation) {
                                  const content = item.substring('mitigación:'.length).trim();
@@ -149,8 +155,50 @@ const App: React.FC = () => {
                                  );
                              }
 
+                             if (isAvancesHeader) {
+                                 const cleanText = item.replace(/\*\*/g, '').replace('📊 Avances Realizados (Primeros 2 Meses):', 'Avances Realizados (Primeros 2 Meses)');
+                                 return (
+                                     <div key={index} className="mt-6 pt-4 border-t border-slate-700 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
+                                         <h3 className="text-lg font-bold text-cyan-400 mb-4 flex items-center gap-2">
+                                             <span className="text-xl">📊</span>
+                                             <span>{cleanText}</span>
+                                         </h3>
+                                     </div>
+                                 );
+                             }
+
                              if(isBold) {
                                 const parts = item.split('**');
+                                const hasBullets = parts[2] && parts[2].includes('•');
+                                
+                                if (hasBullets) {
+                                    const bulletText = parts[2];
+                                    const bulletItems = bulletText.split('•').filter(b => b.trim() !== '');
+                                    
+                                    return (
+                                        <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
+                                            <div className="flex items-start gap-4 mb-3">
+                                                <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-cyan-500/10 rounded-full mt-0.5">
+                                                    <svg className="w-4 h-4 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                <p className="text-slate-300 leading-relaxed">
+                                                    <strong className="text-slate-100">{parts[1]}</strong>
+                                                </p>
+                                            </div>
+                                            <ul className="ml-10 space-y-2 list-none">
+                                                {bulletItems.map((bullet, bulletIndex) => (
+                                                    <li key={bulletIndex} className="flex items-start gap-3 text-slate-300">
+                                                        <span className="text-cyan-400 mt-1.5 flex-shrink-0">•</span>
+                                                        <span className="leading-relaxed">{bullet.trim()}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    );
+                                }
+                                
                                 return(
                                   <div key={index} className="flex items-start gap-4 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
                                     <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-cyan-500/10 rounded-full mt-0.5">
