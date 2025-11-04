@@ -21,7 +21,7 @@ Aplicación web interactiva para presentar y gestionar un modelo de gestión int
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/modelo-de-gestión-integral.git
+git clone https://github.com/Chrissalvo1985/modelo-de-gesti-n-integral.git
 cd modelo-de-gestión-integral
 ```
 
@@ -53,18 +53,28 @@ Los archivos optimizados se generarán en la carpeta `dist/`.
 
 ## 🌐 Deployment
 
-Este proyecto está configurado para ser desplegado en Vercel. Simplemente conecta tu repositorio de GitHub a Vercel y el deployment se realizará automáticamente.
+Este proyecto está desplegado en Vercel y disponible en:
+
+**🔗 URL de Producción:** https://modelo-de-gestion-integral-jt3gohxyj-chris-projects-350fdfeb.vercel.app
+
+El proyecto está configurado para deployment automático. Cada push a la rama `main` en GitHub desplegará automáticamente una nueva versión en Vercel.
+
+### Repositorio GitHub
+
+**📦 Repositorio:** https://github.com/Chrissalvo1985/modelo-de-gesti-n-integral
 
 ### Deployment Manual en Vercel
 
-1. Instala Vercel CLI:
+Si necesitas desplegar manualmente:
+
+1. Instala Vercel CLI (si no lo tienes):
 ```bash
 npm i -g vercel
 ```
 
 2. Despliega:
 ```bash
-vercel
+vercel --prod
 ```
 
 ## 📄 Licencia
